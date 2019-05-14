@@ -15,7 +15,7 @@
  */
 enum list_modes
 {
-	QUEUE, STACK
+	STACK, QUEUE
 };
 
 /**
