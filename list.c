@@ -7,10 +7,10 @@
  *
  * Return: value in front node
  */
-long list_front(void)
+long list_front(unsigned int line)
 {
 	if (main_list.size < 1)
-		fail("can't pint, stack empty");
+		fail("can't pint, stack empty", line);
 	if (main_list.mode == STACK)
 	{
 		main_list.cache = main_list.last;
@@ -26,7 +26,7 @@ long list_front(void)
  *
  * Return: value in next node
  */
-long list_next(void)
+long list_next(unsigned int line)
 {
 	if (main_list.cache == NULL)
 		return (LIST_DONE);
@@ -45,13 +45,13 @@ long list_next(void)
  *
  * Return: value in the removed node
  */
-long list_pop(void)
+long list_pop(unsigned int line)
 {
 	long ret;
 	stack_t *node;
 
 	if (main_list.size < 1)
-		fail("can't pop an empty stack");
+		fail("can't pop an empty stack", line);
 	if (main_list.mode == STACK)
 	{
 		ret = main_list.last->n;
@@ -82,13 +82,13 @@ long list_pop(void)
  * list_push - add a new node to the list with the given value
  * @n: value to add to the list
  */
-void list_push(int n)
+void list_push(int n, unsigned int line)
 {
 	stack_t *node;
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		fail_special(MEMORY, NULL);
+		fail_special(MEMORY, NULL, line);
 	node->next = NULL;
 	node->prev = main_list.last;
 	node->n = n;

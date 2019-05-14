@@ -9,7 +9,7 @@
  * @kind: which unusual error to print
  * @extra: extra string used by this error type
  */
-void fail_special(enum failures kind, char const *extra)
+void fail_special(enum failures kind, char const *extra, unsigned int line)
 {
 	switch (kind)
 	{
@@ -17,7 +17,7 @@ void fail_special(enum failures kind, char const *extra)
 		fail_main(1, "Error: malloc failed");
 		break;
 	case OPCODE:
-		fail_main(3, fail_line(), "unknown instruction ", extra);
+		fail_main(3, fail_line(line), "unknown instruction ", extra);
 		break;
 	case OPEN:
 		fail_main(2, "Error: Can't open file ", extra);
@@ -29,9 +29,9 @@ void fail_special(enum failures kind, char const *extra)
  * fail - print an error message in the usual style
  * @message: the message to print after the line number
  */
-void fail(char const *message)
+void fail(char const *message, unsigned int line)
 {
-	fail_main(2, fail_line(), message);
+	fail_main(2, fail_line(line), message);
 }
 
 
@@ -40,12 +40,12 @@ void fail(char const *message)
  *
  * Return: string consisting of "L" followed by line number then ": "
  */
-char const *fail_line(void)
+char const *fail_line(unsigned int line)
 {
 	static char buffer[14] = {'L', '\0'};
 	int count;
 
-	count = snprintf(&buffer[1], 10, "%d", main_list.ops);
+	count = snprintf(&buffer[1], 10, "%u", line);
 	buffer[count + 1] = ':';
 	buffer[count + 2] = ' ';
 	buffer[count + 3] = '\0';

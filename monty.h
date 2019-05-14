@@ -53,7 +53,6 @@ typedef struct stack_s
  * @last: pointer to earliest node
  * @size: number of nodes in list
  * @mode: whether to act like a stack or a queue
- * @ops: number of operations performed
  */
 struct List
 {
@@ -62,7 +61,6 @@ struct List
 	stack_t *last;
 	size_t size;
 	enum list_modes mode;
-	int ops;
 } main_list;
 
 /**
@@ -81,16 +79,16 @@ typedef struct instruction_s
 
 
 /* error handling */
-void fail_special(enum failures kind, char const *extra);
-void fail(char const *message);
-char const *fail_line(void);
+void fail_special(enum failures kind, char const *extra, unsigned int line);
+void fail(char const *message, unsigned int line);
+char const *fail_line(unsigned int line);
 void fail_main(unsigned char count, ...);
 
 /* stack / queue handling functions */
-long list_front(void);
-long list_next(void);
-long list_pop(void);
-void list_push(int);
+long list_front(unsigned int line);
+long list_next(unsigned int line);
+long list_pop(unsigned int line);
+void list_push(int n, unsigned int line);
 
 /* operation search function */
 void (*find_op_func(char const *search))(stack_t **, unsigned int);

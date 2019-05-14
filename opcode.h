@@ -13,7 +13,7 @@
  * @length: length of the prefix string
  * @trie: the array of TrieNodes used by the opcode searching function
  */
-struct TrieNode
+static struct TrieNode
 {
 	instruction_t const data;
 	struct TrieNode const * const children[26];
