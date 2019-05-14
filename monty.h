@@ -34,6 +34,9 @@ typedef struct instruction_s
 } instruction_t;
 
 
+void (*find_op_func(char const *search))(stack_t **, unsigned int);
+
+
 void op_add(stack_t **stack, unsigned int line_number);
 void op_div(stack_t **stack, unsigned int line_number);
 void op_mod(stack_t **stack, unsigned int line_number);
