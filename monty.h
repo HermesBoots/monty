@@ -2,6 +2,34 @@
 #define _MONTY_H_
 
 
+#include <stddef.h>
+
+
+#define LIST_DONE (0x800000000L)
+
+
+/**
+ * enum list_modes - the modes the main list might be in
+ * @QUEUE: the list uses a first in, first out model
+ * @STACK: the list uses a last in, first out model
+ */
+enum list_modes
+{
+	QUEUE, STACK
+};
+
+/**
+ * enum failures - the kinds of failures that need special message processing
+ * @MEMORY: can't allocate memory
+ * @OPCODE: file includes unknown opcode
+ * @OPEN: can't open bytecode file
+ */
+enum failures
+{
+	MEMORY, OPCODE, OPEN
+};
+
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -13,11 +41,29 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
+/**
+ * struct List - structure to store information about a linked list
+ * @cache: last node retrieved
+ * @first: pointer to latest node
+ * @last: pointer to earliest node
+ * @size: number of nodes in list
+ * @mode: whether to act like a stack or a queue
+ * @ops: number of operations performed
+ */
+struct List
+{
+	stack_t *cache;
+	stack_t *first;
+	stack_t *last;
+	size_t size;
+	enum list_modes mode;
+	int ops;
+} main_list;
 
 /**
  * struct instruction_s - opcode and its function
@@ -29,14 +75,27 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
+/* error handling */
+void fail_special(enum failures kind, char const *extra);
+void fail(char const *message);
+char const *fail_line(void);
+void fail_main(unsigned char count, ...);
+
+/* stack / queue handling functions */
+long list_front(void);
+long list_next(void);
+long list_pop(void);
+void list_push(int);
+
+/* operation search function */
 void (*find_op_func(char const *search))(stack_t **, unsigned int);
 
-
+/* Monty language operations */
 void op_add(stack_t **stack, unsigned int line_number);
 void op_div(stack_t **stack, unsigned int line_number);
 void op_mod(stack_t **stack, unsigned int line_number);
