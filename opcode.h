@@ -15,11 +15,11 @@
  */
 struct TrieNode
 {
-	instruction_t data;
-	struct TrieNode *children[26];
-	char prefix[6];
-	unsigned char length;
-} trie[22] = {
+	instruction_t const data;
+	struct TrieNode const * const children[26];
+	char const prefix[6];
+	unsigned char const length;
+} const trie[22] = {
 	{{NULL, NULL}, {
 		&trie[1], NULL, NULL, &trie[2], NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, &trie[3], &trie[6], NULL, &trie[7], &trie[14], &trie[15],

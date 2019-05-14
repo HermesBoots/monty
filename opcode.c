@@ -13,7 +13,7 @@
 void (*find_op_func(char const *search))(stack_t **, unsigned int)
 {
 	size_t length, matched = 0;
-	struct TrieNode *node;
+	struct TrieNode const *node;
 
 	length = strlen(search);
 	node = &trie[0];
