@@ -20,12 +20,9 @@ void op_push(stack_t **stack, unsigned int line __attribute__((unused)))
  */
 void op_pop(stack_t **stack __attribute__((unused)), unsigned int line)
 {
-	int val;
-
 	if (main_list.size < 1)
 		fail("can't pop on an empty stack", line);
-	val = list_pop();
-	printf("%d\n", val);
+	list_pop();
 }
 
 
