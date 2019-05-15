@@ -40,7 +40,7 @@ int parse_line(FILE *file)
 		fscanf(file, "%*[^\n]");
 		return (main_list.size);
 	}
-	if (fscanf(file, "%5[abcdefghijklmnopqrstuvwxyz]", op) != 1)
+	if (fscanf(file, "%64[abcdefghijklmnopqrstuvwxyz]", op) != 1)
 	{
 		if (fscanf(file, "%64s", op) != 1)
 			return (-1);
