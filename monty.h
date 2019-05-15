@@ -2,7 +2,7 @@
 #define _MONTY_H_
 
 
-#include <stddef.h>
+#include <stdio.h>
 
 
 #define LIST_DONE (0x800000000L)
@@ -89,10 +89,10 @@ FILE *parse_open(char const *path);
 int parse_line(FILE *file);
 
 /* stack / queue handling functions */
-long list_front(unsigned int line);
-long list_next(unsigned int line);
-long list_pop(unsigned int line);
-void list_push(int n, unsigned int line);
+long list_front();
+long list_next();
+long list_pop();
+void list_push(int n);
 
 /* operation search function */
 void (*find_op_func(char const *search))(stack_t **, unsigned int);
