@@ -8,6 +8,7 @@
  * fail_special - print error messages that don't fit the usual pattern
  * @kind: which unusual error to print
  * @extra: extra string used by this error type
+ * @line: current line number in script file
  */
 void fail_special(enum failures kind, char const *extra, unsigned int line)
 {
@@ -31,6 +32,7 @@ void fail_special(enum failures kind, char const *extra, unsigned int line)
 /**
  * fail - print an error message in the usual style
  * @message: the message to print after the line number
+ * @line: current line number in script file
  */
 void fail(char const *message, unsigned int line)
 {
@@ -40,6 +42,7 @@ void fail(char const *message, unsigned int line)
 
 /**
  * fail_line - return the current line number for use in error messages
+ * @line: current line number in script file
  *
  * Return: string consisting of "L" followed by line number then ": "
  */
@@ -65,7 +68,7 @@ void fail_main(unsigned char count, ...)
 	va_list args;
 
 	va_start(args, count);
-	while (count > 0)
+	while (count-- > 0)
 		fprintf(stderr, "%s", va_arg(args, char *));
 	va_end(args);
 	fputc('\n', stderr);
