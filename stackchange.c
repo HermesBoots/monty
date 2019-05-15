@@ -3,6 +3,18 @@
 
 
 /**
+ * op_queue - convert the stack to a queue
+ * @stack: unused
+ * @line: unused
+ */
+void op_queue(stack_t **stack, unsigned int line)
+{
+	(void)stack, (void)line;
+	main_list.mode = QUEUE;
+}
+
+
+/**
  * op_push - push a value onto the stack
  * @stack: pointer to value to push
  * @line: unused
@@ -23,6 +35,18 @@ void op_pop(stack_t **stack __attribute__((unused)), unsigned int line)
 	if (main_list.size < 1)
 		fail("can't pop on an empty stack", line);
 	list_pop();
+}
+
+
+/**
+ * op_stack - convert the queue to a stack
+ * @stack: unused
+ * @line: unused
+ */
+void op_stack(stack_t **stack, unsigned int line)
+{
+	(void)stack, (void)line;
+	main_list.mode = STACK;
 }
 
 
