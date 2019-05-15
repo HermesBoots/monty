@@ -2,18 +2,18 @@
 #include "monty.h"
 
 
-static FILE *file;
-
-
-void parse_open(char const *path)
+FILE *parse_open(char const *path)
 {
-	file = fopen(path, "r");
-	if (file == NULL)
+	FILE *ret;
+
+	ret = fopen(path, "r");
+	if (ret == NULL)
 		fail_special(OPEN, path, 0);
+	return (ret);
 }
 
 
-int parse_line(void)
+int parse_line(FILE *file)
 {
 	static unsigned int line;
 	char op[6];
