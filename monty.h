@@ -84,6 +84,10 @@ void fail(char const *message, unsigned int line);
 char const *fail_line(unsigned int line);
 void fail_main(unsigned char count, ...);
 
+/* file parsing */
+void parse_open(char const *path);
+int parse_line(void);
+
 /* stack / queue handling functions */
 long list_front(unsigned int line);
 long list_next(unsigned int line);
