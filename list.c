@@ -42,7 +42,8 @@ long list_pop(void)
 
 	ret = main_list.first->n;
 	node = main_list.first->next;
-	node->prev = NULL;
+	if (node != NULL)
+		node->prev = NULL;
 	free(main_list.first);
 	main_list.first = node;
 	if (main_list.size == 1)
@@ -73,6 +74,7 @@ void list_push(int n)
 		node->prev = NULL;
 		if (main_list.first != NULL)
 			main_list.first->prev = node;
+		main_list.first = node;
 	}
 	else
 	{
@@ -80,6 +82,7 @@ void list_push(int n)
 		node->prev = main_list.last;
 		if (main_list.last != NULL)
 			main_list.last->next = node;
+		main_list.last = node;
 	}
 	if (main_list.size == 0)
 	{
