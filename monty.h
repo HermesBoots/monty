@@ -90,6 +90,7 @@ int parse_line(FILE *file);
 
 /* stack / queue handling functions */
 void list_add(int n);
+void list_free(void);
 long list_front();
 long list_next();
 long list_pop();

@@ -29,5 +29,27 @@ int main(int argc, char *argv[])
 	while (parse_line(file) != -1)
 		;
 	fclose(file);
+	list_free();
 	return (EXIT_SUCCESS);
+}
+
+
+/**
+ * list_free - free all nodes in the list
+ */
+void list_free(void)
+{
+	if (main_list.size < 1)
+		return;
+	main_list.last = main_list.first->next;
+	free(main_list.first);
+	while (main_list.last != NULL)
+	{
+		main_list.first = main_list.last;
+		main_list.last = main_list.first->next;
+		free(main_list.first);
+	}
+	main_list.first = NULL;
+	main_list.last = NULL;
+	main_list.size = 0;
 }

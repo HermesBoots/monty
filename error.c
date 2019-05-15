@@ -72,5 +72,6 @@ void fail_main(unsigned char count, ...)
 		fprintf(stderr, "%s", va_arg(args, char *));
 	va_end(args);
 	fputc('\n', stderr);
+	list_free();
 	exit(EXIT_FAILURE);
 }
