@@ -3,6 +3,15 @@
 
 
 /**
+ * op_nop - do nothing
+ * @stack: unused
+ * @line: unused
+ */
+void op_nop(stack_t **stack, unsigned int line)
+{ (void)stack, (void)line; }
+
+
+/**
  * op_push - push a value onto the stack
  * @stack: pointer to value to push
  * @line: unused
