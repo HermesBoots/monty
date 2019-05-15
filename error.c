@@ -64,5 +64,7 @@ void fail_main(unsigned char count, ...)
 	va_start(args, count);
 	while (count > 0)
 		fprintf(stderr, "%s", va_arg(args, char *));
+	va_end(args);
+	fputc('\n', stderr);
 	exit(EXIT_FAILURE);
 }
