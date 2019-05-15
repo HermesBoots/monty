@@ -26,7 +26,7 @@ enum list_modes
  */
 enum failures
 {
-	MEMORY, OPCODE, OPEN
+	ARGS, MEMORY, OPCODE, OPEN
 };
 
 

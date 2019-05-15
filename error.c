@@ -13,6 +13,9 @@ void fail_special(enum failures kind, char const *extra, unsigned int line)
 {
 	switch (kind)
 	{
+	case ARGS:
+		fail_main(1, "USAGE: monty file");
+		break;
 	case MEMORY:
 		fail_main(1, "Error: malloc failed");
 		break;
