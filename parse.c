@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "monty.h"
 
 
@@ -17,7 +18,7 @@ int parse_line(FILE *file)
 {
 	static unsigned int line;
 	char op[6];
-	int result, val;
+	int val;
 	void (*f)(stack_t **, unsigned int);
 
 	line++;
