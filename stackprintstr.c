@@ -13,7 +13,7 @@ void op_pchar(stack_t **stack __attribute__((unused)), unsigned int line)
 
 	if (main_list.size < 1)
 		fail("can't pchar, stack empty", line);
-	c = list_pop();
+	c = list_front();
 	if (c > 127 || c < 0)
 		fail("can't pchar, value out of range", line);
 	printf("%c\n", c);
