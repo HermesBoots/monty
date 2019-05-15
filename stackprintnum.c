@@ -16,7 +16,7 @@ void op_pall(stack_t **stack __attribute__((unused)), unsigned int line)
 		result = list_front();
 		while (result != LIST_DONE)
 		{
-			printf("%ld\n", val);
+			printf("%ld\n", result);
 			result = list_next();
 		}
 	}
@@ -32,5 +32,5 @@ void op_pint(stack_t **stack __attribute__((unused)), unsigned int line)
 {
 	if (main_list.size < 1)
 		fail("can't pint, stack empty", line);
-	printf("%d\n", list_front());
+	printf("%ld\n", list_front());
 }
