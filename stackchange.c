@@ -63,6 +63,6 @@ void op_swap(stack_t **stack __attribute__((unused)), unsigned int line)
 		fail("can't swap, stack too short", line);
 	a = list_pop();
 	b = list_pop();
-	list_push(a);
-	list_push(b);
+	list_add(a);
+	list_add(b);
 }

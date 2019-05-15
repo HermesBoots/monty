@@ -14,7 +14,7 @@ void op_add(stack_t **stack __attribute__((unused)), unsigned int line)
 		fail("can't add, stack too short", line);
 	a = list_pop();
 	b = list_pop();
-	list_push(a + b);
+	list_add(a + b);
 }
 
 
@@ -33,7 +33,7 @@ void op_div(stack_t **stack __attribute__((unused)), unsigned int line)
 	if (a == 0)
 		fail("division by zero", line);
 	b = list_pop();
-	list_push(b / a);
+	list_add(b / a);
 }
 
 
@@ -52,7 +52,7 @@ void op_mod(stack_t **stack __attribute__((unused)), unsigned int line)
 	if (a == 0)
 		fail("division by zero", line);
 	b = list_pop();
-	list_push(b % a);
+	list_add(b % a);
 }
 
 
@@ -69,7 +69,7 @@ void op_mul(stack_t **stack __attribute__((unused)), unsigned int line)
 		fail("can't mul, stack too short", line);
 	a = list_pop();
 	b = list_pop();
-	list_push(a * b);
+	list_add(a * b);
 }
 
 
@@ -86,5 +86,5 @@ void op_sub(stack_t **stack __attribute__((unused)), unsigned int line)
 		fail("can't sub, stack too short", line);
 	a = list_pop();
 	b = list_pop();
-	list_push(b - a);
+	list_add(b - a);
 }

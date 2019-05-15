@@ -89,6 +89,7 @@ FILE *parse_open(char const *path);
 int parse_line(FILE *file);
 
 /* stack / queue handling functions */
+void list_add(int n);
 long list_front();
 long list_next();
 long list_pop();

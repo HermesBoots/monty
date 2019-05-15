@@ -3,6 +3,29 @@
 
 
 /**
+ * list_add - add a new node to the top of the stack, even in queue mode
+ * @n: value to add to the list
+ */
+void list_add(int n)
+{
+	stack_t *node;
+
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+		fail_special(MEMORY, NULL, 0);
+	node->n = n;
+	node->next = main_list.first;
+	node->prev = NULL;
+	if (main_list.first != NULL)
+		main_list.first->prev = node;
+	if (main_list.last == NULL)
+		main_list.last = node;
+	main_list.first = node;
+	main_list.size++;
+}
+
+
+/**
  * list_front - get the top of the stack / front of the queue
  *
  * Return: value in front node
@@ -57,7 +80,7 @@ long list_pop(void)
 
 
 /**
- * list_push - add a new node to the list with the given value
+ * list_push - push a new node regarding the list mode
  * @n: value to add to the list
  */
 void list_push(int n)
