@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "monty.h"
 
 
@@ -19,5 +20,5 @@ int main(int argc, char *argv[])
 	while (parse_line(file) != -1)
 		;
 	fclose(file);
-	return (0);
+	return (EXIT_SUCCESS);
 }
