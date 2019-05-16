@@ -88,6 +88,7 @@ void fail_main(unsigned char count, ...);
 /* file parsing */
 FILE *parse_open(char const *path);
 int parse_line(FILE *file);
+void skip_space(FILE *file, unsigned int *line);
 
 /* stack / queue handling functions */
 void list_add(int n);

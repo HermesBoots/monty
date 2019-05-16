@@ -28,13 +28,12 @@ FILE *parse_open(char const *path)
  */
 int parse_line(FILE *file)
 {
-	static unsigned int line;
+	static unsigned int line = 1;
 	char op[65];
 	int val;
 	void (*f)(stack_t **, unsigned int);
 
-	line++;
-	fscanf(file, "%*[ \t\v\n]");
+	skip_space(file, &line);
 	if (fscanf(file, "%1[#]", op) == 1)
 	{
 		fscanf(file, "%*[^\n]");
@@ -60,4 +59,21 @@ int parse_line(FILE *file)
 	f(NULL, line);
 	fscanf(file, "%*[^\n]");
 	return (main_list.size);
+}
+
+
+/**
+ * skip_space - skip the leading white space before an input line
+ * @file: file to read from
+ * @line: pointer to line number that gets incremented with each \n
+ */
+void skip_space(FILE *file, unsigned int *line)
+{
+	char c[2];
+
+	while (fscanf(file, "%1[\n]", c) == 1)
+	{
+		++*line;
+		fscanf(file, "%*[ \t\v]");
+	}
 }
