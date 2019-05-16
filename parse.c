@@ -49,6 +49,8 @@ int parse_line(FILE *file)
 	{
 		if (fscanf(file, "%*[ \t\v]%d", &val) != 1)
 			fail("usage: push integer", line);
+		if (fscanf(file, "%1[^ \t\v\n]", op) != 0)
+			fail("usage: push integer", line);
 		op_push((stack_t **)&val, line);
 		fscanf(file, "%*[^\n]");
 		return (main_list.size);
