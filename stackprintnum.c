@@ -5,12 +5,13 @@
 /**
  * op_pall - print all numbers in the stack
  * @stack: unused
- * @line: current line number in script file
+ * @line: unused
  */
-void op_pall(stack_t **stack __attribute__((unused)), unsigned int line)
+void op_pall(stack_t **stack, unsigned int line)
 {
 	long result;
 
+	(void)stack, (void)line;
 	if (main_list.size > 0)
 	{
 		result = list_front();

@@ -20,6 +20,7 @@ enum list_modes
 
 /**
  * enum failures - the kinds of failures that need special message processing
+ * @ARGS: wrong number of command-line arguments
  * @MEMORY: can't allocate memory
  * @OPCODE: file includes unknown opcode
  * @OPEN: can't open bytecode file
@@ -91,9 +92,9 @@ int parse_line(FILE *file);
 /* stack / queue handling functions */
 void list_add(int n);
 void list_free(void);
-long list_front();
-long list_next();
-long list_pop();
+long list_front(void);
+long list_next(void);
+long list_pop(void);
 void list_push(int n);
 
 /* operation search function */

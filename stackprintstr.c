@@ -23,12 +23,13 @@ void op_pchar(stack_t **stack __attribute__((unused)), unsigned int line)
 /**
  * op_pstr - print the string at the top of the stack
  * @stack: unused
- * @line: current line number in the script file
+ * @line: unused
  */
-void op_pstr(stack_t **stack __attribute__((unused)), unsigned int line)
+void op_pstr(stack_t **stack, unsigned int line)
 {
 	long c;
 
+	(void)stack, (void)line;
 	if (main_list.size < 1)
 	{
 		putchar('\n');
