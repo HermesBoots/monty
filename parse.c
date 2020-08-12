@@ -47,18 +47,14 @@ int parse_line(FILE *file)
 	}
 	if (strcmp(op, "push") == 0)
 	{
-		if (fscanf(file, "%*[ \t\v]%d", &val) != 1)
-			fail("usage: push integer", line);
-		if (fscanf(file, "%1[^ \t\v\n]", op) != 0)
-			fail("usage: push integer", line);
-		op_push((stack_t **)&val, line);
-		fscanf(file, "%*[^\n]");
-		return (main_list.size);
+		op_push(file, line);
 	}
-	f = find_op_func(op);
-	if (f == NULL)
-		fail_special(OPCODE, op, line);
-	f(NULL, line);
+	else {
+		f = find_op_func(op);
+		if (f == NULL)
+			fail_special(OPCODE, op, line);
+		f(NULL, line);
+	}
 	fscanf(file, "%*[^\n]");
 	return (main_list.size);
 }

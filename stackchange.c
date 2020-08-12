@@ -16,11 +16,18 @@ void op_queue(stack_t **stack, unsigned int line)
 
 /**
  * op_push - push a value onto the stack
- * @stack: pointer to value to push
- * @line: unused
+ * @file: script file to read argument from
+ * @line: current line number in script file
  */
-void op_push(stack_t **stack, unsigned int line __attribute__((unused)))
+void op_push(FILE *file, unsigned int line)
 {
+	char buf[2] = {'\0'};
+	int val;
+
+	if (fscanf(file, "%*[ \t\v]%d", &val) != 1)
+		fail("usage: push integer", line);
+	if (fscanf(file, "%1[^ \t\v\n]", op) != 0)
+		fail("usage: push integer", line);
 	list_push(*(int *)stack);
 }
 
